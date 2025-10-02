@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Allow cross-origin requests so the static HTML can POST from localhost or file://
 CORS(app, resources={r"/v1/*": {"origins": "*"}})
 
-def hash_string(data: str) -> str:
+def hash_sha256(data: str) -> str:
     return hashlib.sha256(value.encode('utf-8')).hexdigest()
     
 
@@ -57,4 +57,3 @@ def submit_survey():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-    
