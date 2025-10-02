@@ -8,7 +8,8 @@ class SurveySubmission(BaseModel):
     age: int = Field(..., ge=13, le=120)
     consent: bool = Field(..., description="Must be true to accept")
     rating: int = Field(..., ge=1, le=5)
-    comments: Optional[str] = Field(None, max_length=1000)
+    comments: Optional[str] = None
+    submission_id: Optional[str] = None
   
 
     @validator("comments")
@@ -23,5 +24,13 @@ class SurveySubmission(BaseModel):
         
 #Good example of inheritance
 class StoredSurveyRecord(SurveySubmission):
+    name: str
+    consent: bool
+    rating: int
+    comments: Optional[str] = None
+    user_agent: Optional[str] = None
+    hashed_email: str
+    hashed_age: str
+    submission_id: str
     received_at: datetime
     ip: str
